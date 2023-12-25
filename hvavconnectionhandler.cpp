@@ -43,8 +43,6 @@ void HVACConnectionHandler::onWebSocketConnect()
 
 void HVACConnectionHandler::sendServerInformation(QWebSocket *f_socket)
 {
-    QString value = HVACPackageBuilder::informationPacket(information);
-    qDebug() << value;
-    f_socket->sendTextMessage(value);
+    f_socket->sendTextMessage(HVACPackageBuilder::informationPacket(information));
     f_socket->close(QWebSocketProtocol::CloseCodeNormal);
 }

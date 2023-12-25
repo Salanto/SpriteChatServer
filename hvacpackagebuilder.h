@@ -11,7 +11,7 @@ public:
     HVACPackageBuilder() = delete;
     ~HVACPackageBuilder() = delete;
 
-    static QString informationPacket(ServerInformation *f_content);
+    static QByteArray informationPacket(ServerInformation *f_content);
 };
 
 #endif // HVACPACKAGEBUILDER_H

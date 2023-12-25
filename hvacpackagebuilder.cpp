@@ -5,10 +5,9 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-QString HVACPackageBuilder::informationPacket(ServerInformation *f_content)
+QByteArray HVACPackageBuilder::informationPacket(ServerInformation *f_content)
 {
     QJsonObject l_root_obj;
-    l_root_obj["header"] = "server_hello";
 
     QJsonObject l_data;
     l_data["application"] = f_content->app_name;
@@ -21,8 +20,8 @@ QString HVACPackageBuilder::informationPacket(ServerInformation *f_content)
     QJsonArray packages = QJsonArray::fromStringList(f_content->package_ids);
     l_data["packages"] = packages;
 
-    l_root_obj = l_data;
-
+    l_root_obj["header"] = "server_hello";
+    l_root_obj["data"] = l_data;
     QJsonDocument l_json_document(l_root_obj);
-    return l_json_document.toJson(QJsonDocument::Indented);
+    return l_json_document.toJson(QJsonDocument::Compact);
 }
