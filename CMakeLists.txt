@@ -18,7 +18,7 @@ add_executable(HVAC-Server
   hvavconnectionhandler.h hvavconnectionhandler.cpp
   options.h options.cpp
   hvacserverinformation.h
-  hvacpackagebuilder.h hvacpackagebuilder.cpp
+  hvacpacketbuilder.h hvacpacketbuilder.cpp
 )
 target_link_libraries(HVAC-Server Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::WebSockets)
 

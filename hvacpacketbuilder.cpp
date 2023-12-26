@@ -1,11 +1,11 @@
-#include "hvacpackagebuilder.h"
+#include "hvacpacketbuilder.h"
 #include "hvacserverinformation.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
-QByteArray HVACPackageBuilder::informationPacket(ServerInformation *f_content)
+QByteArray HVACPacketBuilder::informationPacket(ServerInformation *f_content)
 {
     QJsonObject l_root_obj;
 
@@ -17,8 +17,8 @@ QByteArray HVACPackageBuilder::informationPacket(ServerInformation *f_content)
     l_data["playercount"] = f_content->playercount;
     l_data["url"] = f_content->asset_url;
 
-    QJsonArray packages = QJsonArray::fromStringList(f_content->package_ids);
-    l_data["packages"] = packages;
+    QJsonArray l_packages = QJsonArray::fromStringList(f_content->package_ids);
+    l_data["packages"] = l_packages;
 
     l_root_obj["header"] = "server_hello";
     l_root_obj["data"] = l_data;

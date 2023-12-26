@@ -16,13 +16,16 @@ public:
     bool start();
 
 signals:
-    void socketConnected(QWebSocket *f_socket);
+    void gameSocketConnected(QWebSocket *f_socket);
+    void probeSocketConnected(QWebSocket *f_socket);
 
 private slots:
-    void onWebSocketConnect();
+    void onSocketConnect();
+    void sendServerInformation(QWebSocket *f_socket);
 
 private:
-    void sendServerInformation(QWebSocket *f_socket);
+    using Route = void (HVACConnectionHandler::*)(QWebSocket *);
+    std::map<QString, Route> routes;
 
     QWebSocketServer *ws_server = nullptr;
     ServerInformation *information;
