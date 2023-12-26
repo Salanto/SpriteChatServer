@@ -13,15 +13,15 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core WebSockets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core WebSockets)
 
 add_executable(HVAC-Server
-  main.cpp
-  hvacserverapplication.h hvacserverapplication.cpp
-  hvacconnectionhandler.h hvacconnectionhandler.cpp
-  options.h options.cpp
-  hvacserverinformation.h
-  hvacpacketbuilder.h hvacpacketbuilder.cpp
-  hvacclientmanager.h hvacclientmanager.cpp
-  client.h client.cpp
-  signalrelay.h signalrelay.cpp
+  src/main.cpp
+  src/hvacserverapplication.h src/hvacserverapplication.cpp
+  src/hvacconnectionhandler.h src/hvacconnectionhandler.cpp
+  src/options.h src/options.cpp
+  src/hvacserverinformation.h
+  src/hvacpacketbuilder.h src/hvacpacketbuilder.cpp
+  src/hvacclientmanager.h src/hvacclientmanager.cpp
+  src/client.h src/client.cpp
+  src/signalrelay.h src/signalrelay.cpp
 )
 target_link_libraries(HVAC-Server Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::WebSockets)
 
