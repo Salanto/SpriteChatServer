@@ -15,7 +15,7 @@ public:
     ~ClientData();
 
 signals:
-    void clientDataReceived(const QString &f_data, ClientData *f_client);
+    void networkDataReceived(const QString &f_data, ClientData *f_client);
 
 private:
     int m_id;

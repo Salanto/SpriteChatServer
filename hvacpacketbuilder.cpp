@@ -25,3 +25,13 @@ QByteArray HVACPacketBuilder::informationPacket(ServerInformation *f_content)
     QJsonDocument l_json_document(l_root_obj);
     return l_json_document.toJson(QJsonDocument::Compact);
 }
+
+QByteArray HVACPacketBuilder::notificationPacket(QStringList messages)
+{
+    QJsonObject l_root_obj;
+    l_root_obj["header"] = "notification";
+    l_root_obj["data"] = QJsonArray::fromStringList(messages);
+
+    QJsonDocument l_json_document(l_root_obj);
+    return l_json_document.toJson(QJsonDocument::Compact);
+}

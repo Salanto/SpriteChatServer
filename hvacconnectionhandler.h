@@ -1,5 +1,5 @@
-#ifndef HVAVCONNECTIONHANDLER_H
-#define HVAVCONNECTIONHANDLER_H
+#ifndef HVACCONNECTIONHANDLER_H
+#define HVACCONNECTIONHANDLER_H
 
 #include <QObject>
 
@@ -31,4 +31,4 @@ private:
     ServerInformation *information;
 };
 
-#endif // HVAVCONNECTIONHANDLER_H
+#endif // HVACCONNECTIONHANDLER_H

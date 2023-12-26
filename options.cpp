@@ -46,3 +46,8 @@ QString Options::asset_url()
 {
     return settings->value("assets/url", "").toString();
 }
+
+int Options::max_players()
+{
+    return settings->value("server/max_players", 100).toInt();
+}

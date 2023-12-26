@@ -1,4 +1,4 @@
-#include "hvavconnectionhandler.h"
+#include "hvacconnectionhandler.h"
 #include "hvacpacketbuilder.h"
 #include "options.h"
 

@@ -15,7 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core WebSockets)
 add_executable(HVAC-Server
   main.cpp
   hvacserverapplication.h hvacserverapplication.cpp
-  hvavconnectionhandler.h hvavconnectionhandler.cpp
+  hvacconnectionhandler.h hvacconnectionhandler.cpp
   options.h options.cpp
   hvacserverinformation.h
   hvacpacketbuilder.h hvacpacketbuilder.cpp

@@ -7,6 +7,7 @@
 #include "hvacserverinformation.h"
 
 class HVACConnectionHandler;
+class HVACClientManager;
 
 class HVACServerApplication : public QCoreApplication
 {
@@ -18,7 +19,7 @@ public:
 signals:
 
 private:
-    HVACConnectionHandler *con_hand;
+    HVACClientManager *client_manager;
     ServerInformation information;
 };
 

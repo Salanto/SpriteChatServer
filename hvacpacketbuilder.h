@@ -12,6 +12,7 @@ public:
     ~HVACPacketBuilder() = delete;
 
     static QByteArray informationPacket(ServerInformation *f_content);
+    static QByteArray notificationPacket(QStringList messages);
 };
 
 #endif // HVACPACKETBUILDER_H

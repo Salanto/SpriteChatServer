@@ -1,5 +1,5 @@
 #include "hvacserverapplication.h"
-#include "hvavconnectionhandler.h"
+#include "hvacclientmanager.h"
 #include "options.h"
 
 #include <QDebug>
@@ -19,6 +19,5 @@ void HVACServerApplication::start()
     information.description = Options::server_description();
     information.asset_url = Options::server_name();
 
-    con_hand = new HVACConnectionHandler(this, &information);
-    con_hand->start();
+    client_manager = new HVACClientManager(this, &information);
 }
