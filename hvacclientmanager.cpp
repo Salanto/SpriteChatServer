@@ -19,7 +19,7 @@ HVACClientManager::HVACClientManager(QObject *parent, ServerInformation *f_infor
             &HVACConnectionHandler::gameSocketConnected,
             this,
             &HVACClientManager::clientConnected);
-    connection_handler->start();
+    connection_handler->start(Options::bind_ip(), Options::ws_port());
 }
 
 void HVACClientManager::clientConnected(QWebSocket *f_socket)
@@ -32,7 +32,7 @@ void HVACClientManager::clientConnected(QWebSocket *f_socket)
         f_socket->close(QWebSocketProtocol::CloseCodeAbnormalDisconnection);
         f_socket->deleteLater();
     }
-    ClientData *l_client = new ClientData(f_socket, l_client_id);
+    ClientData *l_client = new ClientData(this, f_socket, l_client_id);
     clients.append(l_client);
     connect(l_client, &ClientData::networkDataReceived, this, &HVACClientManager::dataReady);
     s_information->playercount++;

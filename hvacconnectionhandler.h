@@ -1,6 +1,7 @@
 #ifndef HVACCONNECTIONHANDLER_H
 #define HVACCONNECTIONHANDLER_H
 
+#include <QHostAddress>
 #include <QObject>
 
 class QWebSocketServer;
@@ -13,7 +14,7 @@ class HVACConnectionHandler : public QObject
 public:
     explicit HVACConnectionHandler(QObject *parent = nullptr,
                                    ServerInformation *f_information = nullptr);
-    bool start();
+    bool start(QHostAddress f_bind, int f_ws_port);
 
 signals:
     void gameSocketConnected(QWebSocket *f_socket);

@@ -2,8 +2,9 @@
 
 #include <QWebSocket>
 
-ClientData::ClientData(QWebSocket *f_socket, int f_id)
-    : m_socket{f_socket}
+ClientData::ClientData(QObject *parent, QWebSocket *f_socket, int f_id)
+    : QObject{parent}
+    , m_socket{f_socket}
     , m_id{f_id}
 {
     connect(m_socket, &QWebSocket::textMessageReceived, this, [this](const QString &f_data) {

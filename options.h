@@ -18,6 +18,7 @@ public:
     static QString server_name();
     static QString server_description();
     static QString asset_url();
+    static QString bind_ip();
     static int max_players();
 
 private:

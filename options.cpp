@@ -47,6 +47,15 @@ QString Options::asset_url()
     return settings->value("assets/url", "").toString();
 }
 
+QHostAddress Options::bind_ip()
+{
+    QString l_bind = settings->value("server/bind_ip", "").toString();
+    if (l_bind.isEmpty()) {
+        return QHostAddress::Any;
+    }
+    return QHostAddress(l_bind);
+}
+
 int Options::max_players()
 {
     return settings->value("server/max_players", 100).toInt();

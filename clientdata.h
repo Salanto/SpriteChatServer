@@ -11,7 +11,7 @@ class ClientData : public QObject
     Q_OBJECT
 
 public:
-    ClientData(QWebSocket *f_socket, int f_id);
+    ClientData(QObject *parent, QWebSocket *f_socket, int f_id);
     ~ClientData();
 
 signals:

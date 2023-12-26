@@ -1,9 +1,8 @@
 #include "hvacconnectionhandler.h"
 #include "hvacpacketbuilder.h"
-#include "options.h"
+#include "hvacserverinformation.h"
 
 #include <QDebug>
-#include <QHostAddress>
 #include <QWebSocket>
 #include <QWebSocketServer>
 
@@ -18,13 +17,13 @@ HVACConnectionHandler::HVACConnectionHandler(QObject *parent, ServerInformation 
     routes["DATA"] = &HVACConnectionHandler::probeSocketConnected;
 }
 
-bool HVACConnectionHandler::start()
+bool HVACConnectionHandler::start(QHostAddress f_bind, int f_ws_port)
 {
-    ws_server = new QWebSocketServer(Options::server_name(), QWebSocketServer::NonSecureMode, this);
-    if (!ws_server->listen(QHostAddress::Any, Options::ws_port())) {
+    ws_server = new QWebSocketServer(information->name, QWebSocketServer::NonSecureMode, this);
+    if (!ws_server->listen(f_bind, f_ws_port)) {
         return false;
     }
-    qDebug() << "Starting insecure Websocket Server on port" << QString::number(Options::ws_port());
+    qDebug() << "Starting insecure Websocket Server on port" << QString::number(f_ws_port);
     connect(ws_server,
             &QWebSocketServer::newConnection,
             this,
