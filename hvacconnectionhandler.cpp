@@ -45,6 +45,8 @@ void HVACConnectionHandler::onSocketConnect()
         return;
     }
     qDebug() << "Unable to route connection.";
+    l_socket->sendTextMessage(
+        HVACPacketBuilder::notificationPacket({"Unknown Route. Disconnecting client."}));
     l_socket->close(QWebSocketProtocol::CloseCodeBadOperation);
 }
 
