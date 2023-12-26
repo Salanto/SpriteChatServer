@@ -19,6 +19,9 @@ add_executable(HVAC-Server
   options.h options.cpp
   hvacserverinformation.h
   hvacpacketbuilder.h hvacpacketbuilder.cpp
+  hvacclientmanager.h hvacclientmanager.cpp
+  clientdata.h clientdata.cpp
+  signalrelay.h signalrelay.cpp
 )
 target_link_libraries(HVAC-Server Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::WebSockets)
 
