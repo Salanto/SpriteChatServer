@@ -1,5 +1,5 @@
 #include "hvacclientmanager.h"
-#include "clientdata.h"
+#include "client.h"
 #include "hvacconnectionhandler.h"
 #include "hvacpacketbuilder.h"
 #include "hvacserverinformation.h"
@@ -32,9 +32,9 @@ void HVACClientManager::clientConnected(QWebSocket *f_socket)
         f_socket->close(QWebSocketProtocol::CloseCodeAbnormalDisconnection);
         f_socket->deleteLater();
     }
-    ClientData *l_client = new ClientData(this, f_socket, l_client_id);
+    Client *l_client = new Client(this, f_socket, l_client_id);
     clients.append(l_client);
-    connect(l_client, &ClientData::networkDataReceived, this, &HVACClientManager::dataReady);
+    connect(l_client, &Client::networkDataReceived, this, &HVACClientManager::dataReady);
     s_information->playercount++;
 }
 

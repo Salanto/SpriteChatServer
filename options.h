@@ -1,6 +1,7 @@
 #ifndef OPTIONS_H
 #define OPTIONS_H
 
+#include <QHostAddress>
 #include <QSettings>
 
 class Options
@@ -18,7 +19,7 @@ public:
     static QString server_name();
     static QString server_description();
     static QString asset_url();
-    static QString bind_ip();
+    static QHostAddress bind_ip();
     static int max_players();
 
 private:

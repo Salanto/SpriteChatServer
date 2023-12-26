@@ -6,16 +6,16 @@
 
 class QWebSocket;
 
-class ClientData : public QObject
+class Client : public QObject
 {
     Q_OBJECT
 
 public:
-    ClientData(QObject *parent, QWebSocket *f_socket, int f_id);
-    ~ClientData();
+    Client(QObject *parent, QWebSocket *f_socket, int f_id);
+    ~Client();
 
 signals:
-    void networkDataReceived(const QString &f_data, ClientData *f_client);
+    void networkDataReceived(const QString &f_data, Client *f_client);
 
 private:
     int m_id;

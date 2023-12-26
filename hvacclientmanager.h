@@ -5,13 +5,13 @@
 
 struct ServerInformation;
 class QWebSocket;
-class ClientData;
+class Client;
 class HVACConnectionHandler;
 
 class HVACClientManager : public QObject
 {
     Q_OBJECT
-    QVector<ClientData *> clients;
+    QVector<Client *> clients;
     HVACConnectionHandler *connection_handler;
     ServerInformation *s_information = nullptr;
 
@@ -24,7 +24,7 @@ public slots:
     void clientDisconnected();
 
 signals:
-    void dataReady(QString f_data, ClientData *f_lient);
+    void dataReady(QString f_data, Client *f_lient);
 };
 
 #endif // HVACCLIENTMANAGER_H
