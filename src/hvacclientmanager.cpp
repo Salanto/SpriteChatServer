@@ -33,7 +33,7 @@ void HVACClientManager::clientConnected(QWebSocket *f_socket)
         f_socket->deleteLater();
     }
     Client *l_client = new Client(this, f_socket, l_id);
-    clients.append(l_client);
+    clients.insert(l_id, l_client);
     connect(l_client, &Client::networkDataReceived, this, &HVACClientManager::dataReady);
     connect(l_client, &Client::socketDisconnected, this, &HVACClientManager::clientDisconnected);
     s_information->playercount++;
@@ -45,4 +45,31 @@ void HVACClientManager::clientDisconnected(Client *f_client)
     int l_id = clients.indexOf(f_client);
     clients[l_id] = nullptr;
     s_information->playercount--;
+}
+
+void HVACClientManager::messageSend(const int f_id, const QByteArray f_data)
+{
+    Client* l_client = clients.at(f_id);
+    if (l_client == nullptr) {
+        qDebug() << "Unable to send packet to client" << f_id << ". Client does not exist!";
+        return;
+    }
+    l_client->write(f_data);
+}
+
+void HVACClientManager::multicastSend(const QList<int> f_id, const QByteArray f_data)
+{
+    for(int l_id: f_id) {
+        messageSend(l_id, f_data);
+    }
+}
+
+void HVACClientManager::broadcastSend(const QByteArray f_data)
+{
+    // TODO: This code sucks. We should be able to get the indices of all non-nullptr entries.
+    for(Client* l_client : clients) {
+        if (l_client != nullptr) {
+            l_client->write(f_data);
+        }
+    }
 }

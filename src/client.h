@@ -14,6 +14,8 @@ public:
     Client(QObject *parent, QWebSocket *f_socket, int f_id);
     ~Client();
 
+    void write(const QByteArray f_data);
+
 signals:
     void networkDataReceived(const QString &f_data, Client *f_client);
     void socketDisconnected(Client *f_client);

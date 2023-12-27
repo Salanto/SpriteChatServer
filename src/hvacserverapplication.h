@@ -8,6 +8,7 @@
 
 class HVACConnectionHandler;
 class HVACClientManager;
+class HVACCoordinatorClient;
 
 class HVACServerApplication : public QCoreApplication
 {
@@ -20,6 +21,7 @@ signals:
 
 private:
     HVACClientManager *client_manager;
+    HVACCoordinatorClient* advertiser;
     ServerInformation information;
 };
 

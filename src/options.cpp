@@ -42,6 +42,16 @@ QString Options::server_description()
     return settings->value("server/description", "No description provided.").toString();
 }
 
+QString Options::hostname()
+{
+    return settings->value("coordinator/hostname", "").toString();
+}
+
+bool Options::advertise()
+{
+    return settings->value("coordinator/advertise", false).toBool();
+}
+
 QString Options::asset_url()
 {
     return settings->value("assets/url", "").toString();

@@ -11,6 +11,7 @@ struct ServerInformation
     QVersionNumber app_version;
     QString name;
     QString description;
+    QString custom_hostname;
     int playercount = 0;
     QString asset_url;
     QStringList package_ids;

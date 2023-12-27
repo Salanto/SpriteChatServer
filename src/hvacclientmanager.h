@@ -23,6 +23,10 @@ public slots:
     void clientConnected(QWebSocket *f_socket);
     void clientDisconnected(Client *f_client);
 
+    void messageSend(const int f_id, const QByteArray f_data);
+    void multicastSend(const QList<int> f_id, const QByteArray f_data);
+    void broadcastSend(const QByteArray f_data);
+
 signals:
     void dataReady(QString f_data, Client *f_lient);
 };
