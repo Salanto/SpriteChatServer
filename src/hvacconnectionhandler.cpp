@@ -48,10 +48,12 @@ void HVACConnectionHandler::onSocketConnect()
     l_socket->sendTextMessage(
         HVACPacketBuilder::notificationPacket({"Unknown Route. Disconnecting client."}));
     l_socket->close(QWebSocketProtocol::CloseCodeBadOperation);
+    l_socket->deleteLater();
 }
 
 void HVACConnectionHandler::sendServerInformation(QWebSocket *f_socket)
 {
     f_socket->sendTextMessage(HVACPacketBuilder::informationPacket(information));
     f_socket->close(QWebSocketProtocol::CloseCodeNormal);
+    f_socket->deleteLater();
 }

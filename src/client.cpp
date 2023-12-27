@@ -17,4 +17,7 @@ Client::Client(QObject *parent, QWebSocket *f_socket, int f_id)
     });
 }
 
-Client::~Client() {}
+Client::~Client()
+{
+    m_socket->deleteLater();
+}
