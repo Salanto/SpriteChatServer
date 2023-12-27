@@ -11,6 +11,10 @@ Client::Client(QObject *parent, QWebSocket *f_socket, int f_id)
         // This is essentially a QSignalMapper, but easier to understand.
         emit networkDataReceived(f_data, this);
     });
+    connect(m_socket, &QWebSocket::disconnected, this, [this]() {
+        // Clientmanager will handle cleanup.
+        emit socketDisconnected(this);
+    });
 }
 
 Client::~Client() {}

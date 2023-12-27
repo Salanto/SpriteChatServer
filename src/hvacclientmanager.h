@@ -21,7 +21,7 @@ public:
 
 public slots:
     void clientConnected(QWebSocket *f_socket);
-    void clientDisconnected();
+    void clientDisconnected(Client *f_client);
 
 signals:
     void dataReady(QString f_data, Client *f_lient);
