@@ -23,6 +23,10 @@ add_executable(HVAC-Server
   src/client.h src/client.cpp
   src/packetrelay.h src/packetrelay.cpp
   src/hvaccoordinatorclient.h src/hvaccoordinatorclient.cpp
+  src/packet/abstractpacket.h
+  src/packet/packetfactory.h src/packet/packetfactory.cpp
+  src/areadata.h src/areadata.cpp
+  src/areamanager.h src/areamanager.cpp
 )
 target_link_libraries(HVAC-Server
     Qt${QT_VERSION_MAJOR}::Core
