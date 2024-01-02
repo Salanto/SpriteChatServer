@@ -20,7 +20,7 @@ public:
 private:
     template<class T>
     static void registerPacket(QString f_header);
-    static std::map<QString, Packet *(*)(QJsonDocument)> m_builder_map;
+    inline static std::map<QString, Packet *(*) (QJsonDocument)> m_builder_map;
 };
 
 #endif // PACKETFACTORY_H
