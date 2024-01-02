@@ -21,7 +21,7 @@ add_executable(HVAC-Server
   src/hvacpacketbuilder.h src/hvacpacketbuilder.cpp
   src/hvacclientmanager.h src/hvacclientmanager.cpp
   src/client.h src/client.cpp
-
+  src/packetrelay.h src/packetrelay.cpp
   src/hvaccoordinatorclient.h src/hvaccoordinatorclient.cpp
 )
 target_link_libraries(HVAC-Server
