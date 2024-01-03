@@ -24,5 +24,5 @@ Client::~Client()
 
 void Client::write(const QByteArray f_data)
 {
-    m_socket->sendTextMessage(f_data);
+    m_socket->sendBinaryMessage(f_data);
 }

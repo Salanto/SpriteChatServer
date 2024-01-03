@@ -1,18 +1,18 @@
-#ifndef HVACPACKETBUILDER_H
-#define HVACPACKETBUILDER_H
+#ifndef PACKETBUILDER_H
+#define PACKETBUILDER_H
 
 #include <QString>
 
 struct ServerInformation;
 
-class HVACPacketBuilder
+class PacketBuilder
 {
 public:
-    HVACPacketBuilder() = delete;
-    ~HVACPacketBuilder() = delete;
+    PacketBuilder() = delete;
+    ~PacketBuilder() = delete;
 
     static QByteArray informationPacket(ServerInformation *f_content);
     static QByteArray notificationPacket(QStringList messages);
 };
 
-#endif // HVACPACKETBUILDER_H
+#endif // PACKETBUILDER_H

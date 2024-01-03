@@ -1,11 +1,11 @@
-#include "hvacpacketbuilder.h"
-#include "hvacserverinformation.h"
+#include "packetbuilder.h"
+#include "serverinformation.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
-QByteArray HVACPacketBuilder::informationPacket(ServerInformation *f_content)
+QByteArray PacketBuilder::informationPacket(ServerInformation *f_content)
 {
     QJsonObject l_root_obj;
 
@@ -26,7 +26,7 @@ QByteArray HVACPacketBuilder::informationPacket(ServerInformation *f_content)
     return l_json_document.toJson(QJsonDocument::Compact);
 }
 
-QByteArray HVACPacketBuilder::notificationPacket(QStringList messages)
+QByteArray PacketBuilder::notificationPacket(QStringList messages)
 {
     QJsonObject l_root_obj;
     l_root_obj["header"] = "notification";

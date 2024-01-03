@@ -14,16 +14,16 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core WebSockets Network)
 
 add_executable(HVAC-Server
   src/main.cpp
-  src/hvacserverapplication.h src/hvacserverapplication.cpp
-  src/hvacconnectionhandler.h src/hvacconnectionhandler.cpp
+  src/serverapplication.h src/serverapplication.cpp
+  src/connectionhandler.h src/connectionhandler.cpp
   src/options.h src/options.cpp
-  src/hvacserverinformation.h
-  src/hvacpacketbuilder.h src/hvacpacketbuilder.cpp
-  src/hvacclientmanager.h src/hvacclientmanager.cpp
+  src/serverinformation.h
+  src/packetbuilder.h src/packetbuilder.cpp
+  src/clientmanager.h src/clientmanager.cpp
   src/client.h src/client.cpp
   src/packetrelay.h src/packetrelay.cpp
-  src/hvaccoordinatorclient.h src/hvaccoordinatorclient.cpp
-  src/packet/abstractpacket.h
+  src/coordinatorclient.h src/coordinatorclient.cpp
+  src/packet/packet.h
   src/packet/packetfactory.h src/packet/packetfactory.cpp
   src/areadata.h src/areadata.cpp
   src/areamanager.h src/areamanager.cpp

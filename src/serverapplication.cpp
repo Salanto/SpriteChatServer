@@ -1,18 +1,18 @@
-#include "hvacserverapplication.h"
+#include "serverapplication.h"
 #include "client.h"
-#include "hvacclientmanager.h"
-#include "hvaccoordinatorclient.h"
+#include "clientmanager.h"
+#include "coordinatorclient.h"
 #include "options.h"
 #include "packetrelay.h"
 
 #include <QDebug>
 
-HVACServerApplication::HVACServerApplication(int argc, char *argv[])
+ServerApplication::ServerApplication(int argc, char *argv[])
     : QCoreApplication(argc, argv)
 {
 }
 
-void HVACServerApplication::start()
+void ServerApplication::start()
 {
     qDebug().noquote() << "Starting" << applicationName() << applicationVersion();
 
@@ -23,8 +23,8 @@ void HVACServerApplication::start()
     information.asset_url = Options::server_name();
     information.custom_hostname = Options::hostname();
 
-    client_manager = new HVACClientManager(this, &information);
-    advertiser = new HVACCoordinatorClient(this, &information, Options::advertise(), Options::ws_port());
+    client_manager = new ClientManager(this, &information);
+    advertiser = new CoordinatorClient(this, &information, Options::advertise(), Options::ws_port());
     relay = new PacketRelay(this);
-    connect(client_manager, &HVACClientManager::dataReady, relay, &PacketRelay::packetReceived);
+    connect(client_manager, &ClientManager::dataReady, relay, &PacketRelay::packetReceived);
 }

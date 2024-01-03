@@ -6,12 +6,11 @@
 #include <map>
 
 class Client;
-class AbstractPacket;
+class Packet;
 
 class PacketRelay : public QObject
 {
     Q_OBJECT
-    using Packet = AbstractPacket;
 public:
     explicit PacketRelay(QObject *parent = nullptr);
 

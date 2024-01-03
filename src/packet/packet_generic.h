@@ -1,9 +1,9 @@
 #ifndef PACKET_GENERIC_H
 #define PACKET_GENERIC_H
 
-#include "abstractpacket.h"
+#include "packet.h"
 
-class PacketGeneric : public AbstractPacket
+class PacketGeneric : public Packet
 {
 public:
     PacketGeneric() = default;

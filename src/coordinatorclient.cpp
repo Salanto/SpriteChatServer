@@ -1,5 +1,5 @@
-#include "hvaccoordinatorclient.h"
-#include "hvacserverinformation.h"
+#include "coordinatorclient.h"
+#include "serverinformation.h"
 
 #include <QNetworkAccessManager>
 #include <QTimer>
@@ -7,20 +7,20 @@
 #include <QJsonDocument>
 #include <QNetworkReply>
 
-HVACCoordinatorClient::HVACCoordinatorClient(QObject *parent, ServerInformation *f_information, bool f_enabled, int f_ws_port) :
+CoordinatorClient::CoordinatorClient(QObject *parent, ServerInformation *f_information, bool f_enabled, int f_ws_port) :
     QObject{parent}, s_information{f_information}, ws_port{f_ws_port}
 {
     ms_client = new QNetworkAccessManager(this);
     timeout = new QTimer(this);
     timeout->setTimerType(Qt::CoarseTimer);
     timeout->setInterval(advertisement_timeout);
-    connect(timeout, &QTimer::timeout, this, &HVACCoordinatorClient::onAdvertisementTimeout);
-    connect(ms_client, &QNetworkAccessManager::finished, this, &HVACCoordinatorClient::onCoordinatorReply);
+    connect(timeout, &QTimer::timeout, this, &CoordinatorClient::onAdvertisementTimeout);
+    connect(ms_client, &QNetworkAccessManager::finished, this, &CoordinatorClient::onCoordinatorReply);
 
     setAdvertisementEnabled(f_enabled);
 }
 
-void HVACCoordinatorClient::setAdvertisementEnabled(bool f_state)
+void CoordinatorClient::setAdvertisementEnabled(bool f_state)
 {
     if (f_state) {
         timeout->start();
@@ -32,7 +32,7 @@ void HVACCoordinatorClient::setAdvertisementEnabled(bool f_state)
     }
 }
 
-void HVACCoordinatorClient::onAdvertisementTimeout()
+void CoordinatorClient::onAdvertisementTimeout()
 {
     QNetworkRequest req;
     req.setUrl(coordinator_url);
@@ -53,7 +53,7 @@ void HVACCoordinatorClient::onAdvertisementTimeout()
     ms_client->post(req, l_doc.toJson(QJsonDocument::Indented));
 }
 
-void HVACCoordinatorClient::onCoordinatorReply(QNetworkReply *f_reply)
+void CoordinatorClient::onCoordinatorReply(QNetworkReply *f_reply)
 {
     if (f_reply->error() != QNetworkReply::NoError) {
         qDebug().noquote() << "Failed to advertise to coordinator. Error:" << f_reply->error();

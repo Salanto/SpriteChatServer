@@ -3,9 +3,9 @@
 
 #include <QJsonDocument>
 #include <QVersionNumber>
-#include "abstractpacket.h"
+#include "packet.h"
 
-class PacketHello : public AbstractPacket
+class PacketHello : public Packet
 {
 public:
     PacketHello() = default;

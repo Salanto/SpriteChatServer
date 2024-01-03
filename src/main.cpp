@@ -1,4 +1,4 @@
-#include "hvacserverapplication.h"
+#include "serverapplication.h"
 #include "options.h"
 
 inline static QVersionNumber version = QVersionNumber({0, 0, 2});
@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     }
     Options::load();
 
-    HVACServerApplication ServerApplication(argc, argv);
-    ServerApplication.setApplicationName("HVACServer");
+    ServerApplication ServerApplication(argc, argv);
+    ServerApplication.setApplicationName("Server");
     ServerApplication.setApplicationVersion(version.toString());
     ServerApplication.start();
 

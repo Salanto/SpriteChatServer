@@ -1,22 +1,22 @@
-#ifndef HVACCLIENTMANAGER_H
-#define HVACCLIENTMANAGER_H
+#ifndef CLIENTMANAGER_H
+#define CLIENTMANAGER_H
 
 #include <QObject>
 
 struct ServerInformation;
 class QWebSocket;
 class Client;
-class HVACConnectionHandler;
+class ConnectionHandler;
 
-class HVACClientManager : public QObject
+class ClientManager : public QObject
 {
     Q_OBJECT
     QVector<Client *> clients;
-    HVACConnectionHandler *connection_handler;
+    ConnectionHandler *connection_handler;
     ServerInformation *s_information = nullptr;
 
 public:
-    explicit HVACClientManager(QObject *parent = nullptr,
+    explicit ClientManager(QObject *parent = nullptr,
                                ServerInformation *f_information = nullptr);
 
 public slots:
@@ -31,4 +31,4 @@ signals:
     void dataReady(QByteArray f_data, Client *f_lient);
 };
 
-#endif // HVACCLIENTMANAGER_H
+#endif // CLIENTMANAGER_H

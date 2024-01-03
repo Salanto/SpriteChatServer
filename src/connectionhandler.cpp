@@ -1,23 +1,23 @@
-#include "hvacconnectionhandler.h"
-#include "hvacpacketbuilder.h"
-#include "hvacserverinformation.h"
+#include "connectionhandler.h"
+#include "packetbuilder.h"
+#include "serverinformation.h"
 
 #include <QDebug>
 #include <QWebSocket>
 #include <QWebSocketServer>
 
-HVACConnectionHandler::HVACConnectionHandler(QObject *parent, ServerInformation *f_information)
+ConnectionHandler::ConnectionHandler(QObject *parent, ServerInformation *f_information)
     : QObject{parent}
     , information(f_information)
 {
     if (f_information == nullptr) {
         qDebug() << "ServerInformation pointer is nullptr. This is a bad thing to happen.";
     }
-    routes["GAME"] = &HVACConnectionHandler::gameSocketConnected;
-    routes["DATA"] = &HVACConnectionHandler::probeSocketConnected;
+    routes["GAME"] = &ConnectionHandler::gameSocketConnected;
+    routes["DATA"] = &ConnectionHandler::probeSocketConnected;
 }
 
-bool HVACConnectionHandler::start(QHostAddress f_bind, int f_ws_port)
+bool ConnectionHandler::start(QHostAddress f_bind, int f_ws_port)
 {
     ws_server = new QWebSocketServer(information->name, QWebSocketServer::NonSecureMode, this);
     if (!ws_server->listen(f_bind, f_ws_port)) {
@@ -27,15 +27,15 @@ bool HVACConnectionHandler::start(QHostAddress f_bind, int f_ws_port)
     connect(ws_server,
             &QWebSocketServer::newConnection,
             this,
-            &HVACConnectionHandler::onSocketConnect);
+            &ConnectionHandler::onSocketConnect);
     connect(this,
-            &HVACConnectionHandler::probeSocketConnected,
+            &ConnectionHandler::probeSocketConnected,
             this,
-            &HVACConnectionHandler::sendServerInformation);
+            &ConnectionHandler::sendServerInformation);
     return true;
 }
 
-void HVACConnectionHandler::onSocketConnect()
+void ConnectionHandler::onSocketConnect()
 {
     QWebSocket *l_socket = ws_server->nextPendingConnection();
     QString route = l_socket->requestUrl().fileName().toUpper();
@@ -46,14 +46,14 @@ void HVACConnectionHandler::onSocketConnect()
     }
     qDebug() << "Unable to route connection.";
     l_socket->sendTextMessage(
-        HVACPacketBuilder::notificationPacket({"Unknown Route. Disconnecting client."}));
+        PacketBuilder::notificationPacket({"Unknown Route. Disconnecting client."}));
     l_socket->close(QWebSocketProtocol::CloseCodeBadOperation);
     l_socket->deleteLater();
 }
 
-void HVACConnectionHandler::sendServerInformation(QWebSocket *f_socket)
+void ConnectionHandler::sendServerInformation(QWebSocket *f_socket)
 {
-    f_socket->sendTextMessage(HVACPacketBuilder::informationPacket(information));
+    f_socket->sendTextMessage(PacketBuilder::informationPacket(information));
     f_socket->close(QWebSocketProtocol::CloseCodeNormal);
     f_socket->deleteLater();
 }

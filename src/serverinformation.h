@@ -1,5 +1,5 @@
-#ifndef HVACSERVERINFORMATION_H
-#define HVACSERVERINFORMATION_H
+#ifndef SERVERINFORMATION_H
+#define SERVERINFORMATION_H
 
 #include <QString>
 #include <QStringList>
@@ -17,4 +17,4 @@ struct ServerInformation
     QStringList package_ids;
 };
 
-#endif // HVACSERVERINFORMATION_H
+#endif // SERVERINFORMATION_H

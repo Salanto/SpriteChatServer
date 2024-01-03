@@ -1,12 +1,10 @@
 #ifndef PACKETFACTORY_H
 #define PACKETFACTORY_H
 
-#include "abstractpacket.h"
+#include "packet.h"
 
 #include <QString>
 #include <map>
-
-using Packet = AbstractPacket;
 
 class PacketFactory
 {   

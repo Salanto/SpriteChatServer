@@ -1,5 +1,5 @@
-#ifndef HVACCOORDINATORCLIENT_H
-#define HVACCOORDINATORCLIENT_H
+#ifndef COORDINATORCLIENT_H
+#define COORDINATORCLIENT_H
 
 #include <QObject>
 
@@ -8,11 +8,11 @@ class QNetworkAccessManager;
 class QNetworkReply;
 class QTimer;
 
-class HVACCoordinatorClient : public QObject
+class CoordinatorClient : public QObject
 {
     Q_OBJECT
 public:
-    explicit HVACCoordinatorClient(QObject *parent = nullptr, ServerInformation* f_information = nullptr, bool f_enabled = true, int f_ws_port = -1);
+    explicit CoordinatorClient(QObject *parent = nullptr, ServerInformation* f_information = nullptr, bool f_enabled = true, int f_ws_port = -1);
     void setAdvertisementEnabled(bool f_state);
 
 private slots:
@@ -31,4 +31,4 @@ private:
 
 };
 
-#endif // HVACCOORDINATORCLIENT_H
+#endif // COORDINATORCLIENT_H
