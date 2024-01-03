@@ -15,7 +15,7 @@ Packet *PacketFactory::createPacket(QByteArray f_data)
         return new PacketGeneric();
     }
 
-    QString l_header = l_in["header"].toString();
+    QString l_header = l_in["header"].toString().toUpper();
     if (canCreatePacket(l_header)) {
         return m_builder[l_header](l_in["data"]);
     }
@@ -28,7 +28,7 @@ Packet *PacketFactory::createInstance(QJsonValue f_data)
     return new T(f_data);
 }
 
-template<class T, is_packet<T> = true>
+template<typename T>
 void PacketFactory::registerPacket(QString header)
 {
     QString l_header = T().header();
@@ -38,5 +38,5 @@ void PacketFactory::registerPacket(QString header)
 
 void PacketFactory::registerPackets()
 {
-    registerPacket<PacketHello>("HELLO");
+    registerPacket<PacketHello>(QString());
 }

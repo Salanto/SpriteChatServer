@@ -8,16 +8,10 @@
 class PacketHello : public AbstractPacket
 {
 public:
-    PacketHello();
-    PacketHello(QJsonValue f_data);
+    PacketHello() = default;
+    PacketHello(QJsonValue f_data) { Q_UNUSED(f_data) };
 
     QString header() const override { return "HELLO"; }
-    bool fromJsonValue(const QJsonValue &f_data) override
-    {
-        Q_UNUSED(f_data);
-        return true;
-    }
-
     QString app_name() const { return application_name; }
     QVersionNumber app_version() const { return version; }
     QString hwid() const { return identifier; }

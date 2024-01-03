@@ -15,6 +15,7 @@ public:
     ~Client();
 
     void write(const QByteArray f_data);
+    int id() { return m_id; }
 
 signals:
     void networkDataReceived(const QString &f_data, Client *f_client);

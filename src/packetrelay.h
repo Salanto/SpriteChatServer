@@ -16,7 +16,7 @@ public:
     explicit PacketRelay(QObject *parent = nullptr);
 
 public slots:
-    void packetReceived(QString f_data, Client* f_client);
+    void packetReceived(QByteArray f_data, Client *f_client);
 
 signals:
     // Sends the packet to a single client.
@@ -30,7 +30,8 @@ signals:
     void softwareInformation(Packet* f_data, Client* f_client);
 
 private:
-    using Route = void(PacketRelay::*)(Packet*,Client*);
+    bool canRoutePacket(QString f_header);
+    using Route = void (PacketRelay::*)(Packet *, Client *);
     std::map<QString, Route> routes;
 };
 
