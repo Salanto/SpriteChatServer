@@ -1,7 +1,9 @@
 #include "hvacserverapplication.h"
+#include "client.h"
 #include "hvacclientmanager.h"
 #include "hvaccoordinatorclient.h"
 #include "options.h"
+#include "packetrelay.h"
 
 #include <QDebug>
 
@@ -23,4 +25,6 @@ void HVACServerApplication::start()
 
     client_manager = new HVACClientManager(this, &information);
     advertiser = new HVACCoordinatorClient(this, &information, Options::advertise(), Options::ws_port());
+    relay = new PacketRelay(this);
+    connect(client_manager, &HVACClientManager::dataReady, relay, &PacketRelay::packetReceived);
 }

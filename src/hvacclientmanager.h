@@ -28,7 +28,7 @@ public slots:
     void broadcastSend(const QByteArray f_data);
 
 signals:
-    void dataReady(QString f_data, Client *f_lient);
+    void dataReady(QByteArray f_data, Client *f_lient);
 };
 
 #endif // HVACCLIENTMANAGER_H

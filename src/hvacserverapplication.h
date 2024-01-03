@@ -9,6 +9,7 @@
 class HVACConnectionHandler;
 class HVACClientManager;
 class HVACCoordinatorClient;
+class PacketRelay;
 
 class HVACServerApplication : public QCoreApplication
 {
@@ -23,6 +24,7 @@ private:
     HVACClientManager *client_manager;
     HVACCoordinatorClient* advertiser;
     ServerInformation information;
+    PacketRelay *relay;
 };
 
 #endif // HVACSERVERAPPLICATION_H

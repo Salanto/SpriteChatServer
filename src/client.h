@@ -18,7 +18,7 @@ public:
     int id() { return m_id; }
 
 signals:
-    void networkDataReceived(const QString &f_data, Client *f_client);
+    void networkDataReceived(const QByteArray &f_data, Client *f_client);
     void socketDisconnected(Client *f_client);
 
 private:
