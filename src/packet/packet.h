@@ -7,6 +7,7 @@
 class Packet
 {
 public:
+    virtual ~Packet() = default;
     virtual QString header() const = 0;
 };
 

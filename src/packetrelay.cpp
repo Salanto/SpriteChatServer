@@ -21,6 +21,7 @@ void PacketRelay::packetReceived(QByteArray f_data, Client *f_client)
     }
     qDebug() << QString("[%1]Unable to route packet with header %2")
                     .arg(QString::number(f_client->id()), f_packet->header());
+    delete f_packet;
 }
 
 bool PacketRelay::canRoutePacket(QString f_header)

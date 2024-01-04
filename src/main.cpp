@@ -1,7 +1,7 @@
 #include "serverapplication.h"
 #include "options.h"
 
-inline static QVersionNumber version = QVersionNumber({0, 0, 2});
+inline static QVersionNumber version = QVersionNumber({0, 1, 0});
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     Options::load();
 
     ServerApplication ServerApplication(argc, argv);
-    ServerApplication.setApplicationName("Server");
+    ServerApplication.setApplicationName("HVAC-Server");
     ServerApplication.setApplicationVersion(version.toString());
     ServerApplication.start();
 
