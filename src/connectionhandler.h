@@ -6,7 +6,7 @@
 
 class QWebSocketServer;
 class QWebSocket;
-class ServerInformation;
+struct ServerInformation;
 
 class ConnectionHandler : public QObject
 {

@@ -11,7 +11,7 @@ Packet *PacketFactory::createPacket(QByteArray f_data)
 {
     QJsonParseError p_error;
     QJsonDocument l_in = QJsonDocument::fromJson(f_data, &p_error);
-    if (p_error.error == QJsonParseError::NoError) {
+    if (p_error.error != QJsonParseError::NoError) {
         return new PacketGeneric();
     }
 
@@ -38,5 +38,5 @@ void PacketFactory::registerPacket(QString header)
 
 void PacketFactory::registerPackets()
 {
-    registerPacket<PacketHello>(QString());
+    registerPacket<PacketHello>("HELLO");
 }

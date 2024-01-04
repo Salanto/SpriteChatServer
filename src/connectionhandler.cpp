@@ -53,7 +53,7 @@ void ConnectionHandler::onSocketConnect()
 
 void ConnectionHandler::sendServerInformation(QWebSocket *f_socket)
 {
-    f_socket->sendTextMessage(PacketBuilder::informationPacket(information));
+    f_socket->sendBinaryMessage(PacketBuilder::informationPacket(information));
     f_socket->close(QWebSocketProtocol::CloseCodeNormal);
     f_socket->deleteLater();
 }
