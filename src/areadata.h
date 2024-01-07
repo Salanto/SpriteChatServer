@@ -6,13 +6,13 @@
 class AreaData
 {
 public:
-    AreaData(int f_root, int f_id, QVector<int> f_visible_areas);
+    AreaData(int f_root = -1, int f_id = -1, QVector<int> f_visible_areas = {});
     ~AreaData() {};
 
 private:
-    int root_id = -1;
-    int id = -1;
-    QVector<int> visible_areas = {-1};
+    int root_id;
+    int id;
+    QVector<int> visible_areas;
 };
 
 #endif // AREADATA_H

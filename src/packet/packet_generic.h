@@ -8,11 +8,14 @@ class PacketGeneric : public Packet
 public:
     PacketGeneric() = default;
 
-    bool fromJsonValue(const QJsonValue &f_in) override {
-        Q_UNUSED(f_in);
-        return false;
-    };
-    QString header() const override { return "INVALID"; }
+    bool fromJsonValue(const QJsonValue &f_in) override;;
+    QString header() const override;
+    QString setHeader(const QString f_header);
+    QByteArray toJsonString() const;
+
+private:
+    QString m_header;
+    QJsonValue m_data;
 };
 
 #endif // PACKET_GENERIC_H
