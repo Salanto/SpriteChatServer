@@ -1,9 +1,9 @@
 #include "serverapplication.h"
-#include "client.h"
 #include "clientmanager.h"
 #include "coordinatorclient.h"
 #include "options.h"
 #include "packetrelay.h"
+#include "areamanager.h"
 
 #include <QDebug>
 
@@ -26,5 +26,6 @@ void ServerApplication::start()
     client_manager = new ClientManager(this, &information);
     advertiser = new CoordinatorClient(this, &information, Options::advertise(), Options::ws_port());
     relay = new PacketRelay(this);
+    area_manager = new AreaManager(this, relay);
     connect(client_manager, &ClientManager::dataReady, relay, &PacketRelay::packetReceived);
 }

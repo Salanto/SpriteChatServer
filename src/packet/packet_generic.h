@@ -7,8 +7,11 @@ class PacketGeneric : public Packet
 {
 public:
     PacketGeneric() = default;
-    PacketGeneric(QJsonValue f_data);
 
+    bool fromJsonValue(const QJsonValue &f_in) override {
+        Q_UNUSED(f_in);
+        return false;
+    };
     QString header() const override { return "INVALID"; }
 };
 

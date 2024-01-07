@@ -2,6 +2,9 @@
 #include "packet_generic.h"
 #include "packet_hello.h"
 
+#include <QJsonDocument>
+#include <QJsonParseError>
+
 bool PacketFactory::canCreatePacket(QString f_header)
 {
     return m_builder.count(f_header);
@@ -25,7 +28,13 @@ Packet *PacketFactory::createPacket(QByteArray f_data)
 template<class T>
 Packet *PacketFactory::createInstance(QJsonValue f_data)
 {
-    return new T(f_data);
+    Packet* l_packet = new T();
+    if (!l_packet->fromJsonValue(f_data)) {
+        delete l_packet;
+        return new PacketGeneric();
+    }
+    return l_packet;
+
 }
 
 template<typename T>

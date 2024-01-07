@@ -16,6 +16,7 @@ void PacketRelay::packetReceived(QByteArray f_data, Client *f_client)
     QString l_header = f_packet->header();
 
     if (canRoutePacket(l_header)) {
+        qDebug() << "Routing packet on route" << l_header;
         emit(this->*routes[l_header])(f_packet, f_client);
         return;
     }

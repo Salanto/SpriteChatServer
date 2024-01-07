@@ -10,6 +10,7 @@ class ConnectionHandler;
 class ClientManager;
 class CoordinatorClient;
 class PacketRelay;
+class AreaManager;
 
 class ServerApplication : public QCoreApplication
 {
@@ -25,6 +26,7 @@ private:
     CoordinatorClient* advertiser;
     ServerInformation information;
     PacketRelay *relay;
+    AreaManager* area_manager;
 };
 
 #endif // SERVERAPPLICATION_H
