@@ -5,14 +5,32 @@
 
 class AreaData
 {
+    struct Background {
+        QString name;
+        QStringList sides;
+    };
+
+    struct Character { //Maybe a bad idea?
+        QString name;
+        bool taken;
+    };
+
 public:
-    AreaData(int f_root = -1, int f_id = -1, QVector<int> f_visible_areas = {});
+    AreaData(int f_id = -1);
     ~AreaData() {};
 
+    QString getName() const;
+    void setName(const QString& f_name);
+
+    QString getBackground() const;
+    QStringList getSides() const;
+    void setBackground(const QString& f_name, const QStringList& f_sides);
+
+
 private:
-    int root_id;
     int id;
-    QVector<int> visible_areas;
+    QString name;
+    Background background;
 };
 
 #endif // AREADATA_H

@@ -2,10 +2,34 @@
 
 #include <QDebug>
 
-AreaData::AreaData(int f_root, int f_id, QVector<int> f_visible_areas) :
-    root_id{f_root},
-    id{f_id},
-    visible_areas{f_visible_areas}
+AreaData::AreaData(int f_id) :
+    id{f_id}
 {
-    qDebug() << QString("[AREA %1] Creating area with root node %2").arg(QString::number(id), QString::number(root_id));
+    qDebug() << QString("[AREA %1] Created").arg(QString::number(id));
+}
+
+QString AreaData::getName() const
+{
+    return name;
+}
+
+void AreaData::setName(const QString &f_name)
+{
+    name = f_name;
+}
+
+QString AreaData::getBackground() const
+{
+    return background.name;
+}
+
+QStringList AreaData::getSides() const
+{
+    return background.sides;
+}
+
+void AreaData::setBackground(const QString &f_name, const QStringList &f_sides)
+{
+    background.name = f_name;
+    background.sides = f_sides;
 }

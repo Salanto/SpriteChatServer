@@ -30,6 +30,7 @@ add_executable(HVAC-Server
   src/packet/packet_hello.h src/packet/packet_hello.cpp
   src/packet/packet_generic.h src/packet/packet_generic.cpp
   src/packet/packet_selectcharacter.h src/packet/packet_selectcharacter.cpp
+  src/constants.h
 )
 target_link_libraries(HVAC-Server
     Qt${QT_VERSION_MAJOR}::Core
