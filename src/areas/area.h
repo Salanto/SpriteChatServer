@@ -5,6 +5,7 @@
 #include <QList>
 
 #include "location.h"
+#include "datatypes.h"
 
 class Area : public QObject
 {
@@ -14,7 +15,7 @@ public:
 
 private:
     QVector<Location> locations;
-    QList
+    QList<Datatypes::Background> backgrounds;
 
 signals:
 };
