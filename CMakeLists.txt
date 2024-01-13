@@ -25,12 +25,14 @@ add_executable(HVAC-Server
   src/coordinatorclient.h src/coordinatorclient.cpp
   src/packet/packet.h
   src/packet/packetfactory.h src/packet/packetfactory.cpp
-  src/areadata.h src/areadata.cpp
-  src/areamanager.h src/areamanager.cpp
+  src/areas/areamanager.h src/areas/areamanager.cpp
   src/packet/packet_hello.h src/packet/packet_hello.cpp
   src/packet/packet_generic.h src/packet/packet_generic.cpp
   src/packet/packet_selectcharacter.h src/packet/packet_selectcharacter.cpp
   src/constants.h
+  src/datatypes.h
+  src/areas/location.h src/areas/location.cpp
+  src/areas/area.h src/areas/area.cpp
 )
 target_link_libraries(HVAC-Server
     Qt${QT_VERSION_MAJOR}::Core
