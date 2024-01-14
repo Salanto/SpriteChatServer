@@ -31,7 +31,7 @@ AreaManager::AreaManager(QObject *parent, PacketRelay *f_relay) :
 
 bool AreaManager::loadAreaFromFile(const QString &f_file)
 {
-    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::area_storage + f_file, QIODevice::ReadOnly);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::area_storage + f_file + ".json", QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return false;
     }
@@ -62,7 +62,7 @@ bool AreaManager::loadAreaFromFile(const QString &f_file)
 
 QStringList AreaManager::readCharacters(const QString &f_file)
 {
-    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::character_storage + f_file, QIODevice::ReadOnly);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::character_storage + f_file + ".txt", QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return QStringList{};
     }
@@ -76,7 +76,7 @@ QStringList AreaManager::readCharacters(const QString &f_file)
 
 Datatypes::BackgroundList AreaManager::readBackground(const QString &f_file)
 {
-    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::background_storage + f_file, QIODevice::ReadOnly);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::background_storage + f_file + ".json", QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return Datatypes::BackgroundList{};
     }
@@ -84,7 +84,7 @@ Datatypes::BackgroundList AreaManager::readBackground(const QString &f_file)
 
 Datatypes::MusicList AreaManager::readMusicList(const QString f_file)
 {
-    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::music_storage + f_file, QIODevice::ReadOnly);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::music_storage + f_file + ".json", QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return Datatypes::MusicList{};
     }
