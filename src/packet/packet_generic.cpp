@@ -2,6 +2,7 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QDebug>
 
 bool PacketGeneric::fromJsonValue(const QJsonValue &f_in)
 {

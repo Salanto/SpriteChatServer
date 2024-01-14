@@ -1,8 +1,9 @@
 #include "area.h"
-#include "qjsonobject.h"
 
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QJsonObject>
+#include <QDebug>
 
 Area::Area(QObject *parent)
     : QObject{parent}

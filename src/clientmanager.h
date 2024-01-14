@@ -3,9 +3,10 @@
 
 #include <QObject>
 
+#include "client.h"
+
 struct ServerInformation;
 class QWebSocket;
-class Client;
 class ConnectionHandler;
 
 class ClientManager : public QObject

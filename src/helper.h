@@ -3,6 +3,7 @@
 
 #include <QFile>
 #include <QDebug>
+#include <memory>
 
 namespace Helper {
 

@@ -1,7 +1,7 @@
 #include "serverapplication.h"
 #include "options.h"
 
-inline static QVersionNumber version = QVersionNumber({0, 1, 0});
+inline static QVersionNumber version = QVersionNumber({0, 1, 2});
 
 int main(int argc, char *argv[])
 {

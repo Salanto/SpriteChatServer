@@ -4,12 +4,12 @@
 #include <QObject>
 
 #include "datatypes.h"
+#include "area.h"
 
-class Area;
+class PacketRelay;
 
 class AreaManager : public QObject
 {
-    class PacketRelay;
     Q_OBJECT
 
 public:
