@@ -52,6 +52,11 @@ bool Options::advertise()
     return settings->value("coordinator/advertise", false).toBool();
 }
 
+QStringList Options::areas()
+{
+    return settings->value("map/areas", {"default"}).toStringList();
+}
+
 QString Options::asset_url()
 {
     return settings->value("assets/url", "").toString();

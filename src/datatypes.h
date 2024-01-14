@@ -2,13 +2,25 @@
 #define DATATYPES_H
 
 #include <QObject>
+#include <QMap>
 
 namespace Datatypes {
     Q_NAMESPACE
 
-    struct Background {
+    struct BackgroundInformation {
         QString name;
         QStringList sides;
+        QMap<QString, QString> overlays;
+    };
+    using BackgroundList = QMap<QString, BackgroundInformation>;
+
+    struct MusicCategory {
+        QString category;
+        QStringList songs;
+    };
+
+    struct MusicList {
+        QList<MusicCategory> musiclist;
     };
 };
 
