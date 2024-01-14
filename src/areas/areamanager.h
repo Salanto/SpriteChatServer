@@ -6,7 +6,6 @@
 #include "datatypes.h"
 
 class Area;
-class QFile;
 
 class AreaManager : public QObject
 {
@@ -23,8 +22,6 @@ private:
     QStringList readCharacters(const QString& f_file);
     Datatypes::BackgroundList readBackground(const QString& f_file);
     Datatypes::MusicList readMusicList(const QString f_file);
-
-    std::unique_ptr<QFile> openFileR(const QString& f_file);
 
     PacketRelay* relay;
     QVector<Area*> areas;

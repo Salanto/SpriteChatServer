@@ -10,6 +10,7 @@ namespace Datatypes {
     struct BackgroundInformation {
         QString name;
         QStringList sides;
+        QMap<QString, QString> images;
         QMap<QString, QString> overlays;
     };
     using BackgroundList = QMap<QString, BackgroundInformation>;

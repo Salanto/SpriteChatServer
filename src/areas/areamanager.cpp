@@ -2,6 +2,7 @@
 #include "packetrelay.h"
 #include "constants.h"
 #include "options.h"
+#include "helper.h"
 #include "area.h"
 
 #include <QFile>
@@ -30,7 +31,7 @@ AreaManager::AreaManager(QObject *parent, PacketRelay *f_relay) :
 
 bool AreaManager::loadAreaFromFile(const QString &f_file)
 {
-    std::unique_ptr<QFile> l_file = openFileR(Storage::area_storage + f_file);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::area_storage + f_file, QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return false;
     }
@@ -61,15 +62,21 @@ bool AreaManager::loadAreaFromFile(const QString &f_file)
 
 QStringList AreaManager::readCharacters(const QString &f_file)
 {
-    std::unique_ptr<QFile> l_file = openFileR(Storage::area_storage + f_file);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::character_storage + f_file, QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return QStringList{};
     }
+    QStringList l_characters;
+    QTextStream l_stream(l_file.get());
+    while(!l_stream.atEnd()) {
+        l_characters.append(l_stream.readLine());
+    }
+    return l_characters;
 }
 
 Datatypes::BackgroundList AreaManager::readBackground(const QString &f_file)
 {
-    std::unique_ptr<QFile> l_file = openFileR(Storage::area_storage + f_file);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::background_storage + f_file, QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return Datatypes::BackgroundList{};
     }
@@ -77,21 +84,10 @@ Datatypes::BackgroundList AreaManager::readBackground(const QString &f_file)
 
 Datatypes::MusicList AreaManager::readMusicList(const QString f_file)
 {
-    std::unique_ptr<QFile> l_file = openFileR(Storage::area_storage + f_file);
+    std::unique_ptr<QFile> l_file = Helper::openFile(Storage::music_storage + f_file, QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
         return Datatypes::MusicList{};
     }
-}
-
-std::unique_ptr<QFile> AreaManager::openFileR(const QString &f_file)
-{
-    auto l_file =  std::make_unique<QFile>(f_file);
-    if (l_file->open(QIODevice::ReadOnly))
-    {
-        qDebug() << "Unable to open file" << l_file->fileName();
-        return nullptr;
-    }
-    return l_file;
 }
 
 

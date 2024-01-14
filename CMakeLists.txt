@@ -35,6 +35,7 @@ add_executable(HVAC-Server
   src/datatypes.h
   src/areas/location.h src/areas/location.cpp
   src/areas/area.h src/areas/area.cpp
+  src/helper.h
 )
 target_link_libraries(HVAC-Server
     Qt${QT_VERSION_MAJOR}::Core
