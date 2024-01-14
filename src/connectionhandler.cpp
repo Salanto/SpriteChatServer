@@ -21,9 +21,10 @@ bool ConnectionHandler::start(QHostAddress f_bind, int f_ws_port)
 {
     ws_server = new QWebSocketServer(information->name, QWebSocketServer::NonSecureMode, this);
     if (!ws_server->listen(f_bind, f_ws_port)) {
+        qDebug() << "Unable to start insecure Websocket Server on port" << f_ws_port;
         return false;
     }
-    qDebug() << "Starting insecure Websocket Server on port" << QString::number(f_ws_port);
+    qDebug() << "Starting insecure Websocket Server on port" << f_ws_port;
     connect(ws_server,
             &QWebSocketServer::newConnection,
             this,
