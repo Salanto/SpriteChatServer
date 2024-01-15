@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QMap>
 
-namespace Datatypes {
+namespace DataTypes {
     Q_NAMESPACE
 
     struct BackgroundInformation {

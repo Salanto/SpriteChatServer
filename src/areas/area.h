@@ -28,17 +28,17 @@ public:
     QStringList getCharacterList() const;
     void setCharacterList(const QStringList& f_characters);
     QStringList getBackgroundList() const;
-    void setBackgroundList(Datatypes::BackgroundList &f_backgrounds);
-    Datatypes::MusicList getMusicList() const;
-    void setMusicList(const Datatypes::MusicList& f_musiclist);
+    void setBackgroundList(const DataTypes::BackgroundList &f_backgrounds);
+    DataTypes::MusicList getMusicList() const;
+    void setMusicList(const DataTypes::MusicList& f_musiclist);
 
     bool loadLocations(QJsonValue f_locations);
 
 private:
     QVector<Location*> locations; // aka areas in AO2 slang.
     QStringList characters;
-    QMap<QString, Datatypes::BackgroundInformation> backgrounds;
-    Datatypes::MusicList musiclist;
+    QMap<QString, DataTypes::BackgroundInformation> backgrounds;
+    DataTypes::MusicList musiclist;
 
     int id;
 

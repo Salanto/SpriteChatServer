@@ -47,12 +47,12 @@ void Location::setDescription(const QString &f_description)
     description = f_description;
 }
 
-Datatypes::BackgroundInformation Location::getBackground() const
+DataTypes::BackgroundInformation Location::getBackground() const
 {
     return background;
 }
 
-void Location::setBackground(const Datatypes::BackgroundInformation &f_background)
+void Location::setBackground(const DataTypes::BackgroundInformation &f_background)
 {
     background = f_background;
 }

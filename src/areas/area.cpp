@@ -34,17 +34,17 @@ QStringList Area::getBackgroundList() const
     return backgrounds.keys();
 }
 
-void Area::setBackgroundList(Datatypes::BackgroundList &f_backgrounds)
+void Area::setBackgroundList(const DataTypes::BackgroundList &f_backgrounds)
 {
     backgrounds = f_backgrounds;
 }
 
-Datatypes::MusicList Area::getMusicList() const
+DataTypes::MusicList Area::getMusicList() const
 {
     return musiclist;
 }
 
-void Area::setMusicList(const Datatypes::MusicList &f_musiclist)
+void Area::setMusicList(const DataTypes::MusicList &f_musiclist)
 {
     musiclist = f_musiclist;
 }

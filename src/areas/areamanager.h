@@ -20,8 +20,8 @@ public:
 
 private:
     QStringList readCharacters(const QString& f_file);
-    Datatypes::BackgroundList readBackground(const QString& f_file);
-    Datatypes::MusicList readMusicList(const QString f_file);
+    DataTypes::BackgroundList readBackgrounds(const QString& f_file);
+    DataTypes::MusicList readMusicList(const QString f_file);
 
     PacketRelay* relay;
     QVector<Area*> areas;

@@ -27,14 +27,14 @@ public:
     QString getDescription() const;
     void setDescription(const QString& f_description);
 
-    Datatypes::BackgroundInformation getBackground() const;
-    void setBackground(const Datatypes::BackgroundInformation& f_background);
+    DataTypes::BackgroundInformation getBackground() const;
+    void setBackground(const DataTypes::BackgroundInformation& f_background);
 
 private:
     int id;
     QString name;
     QString description;
-    Datatypes::BackgroundInformation background;
+    DataTypes::BackgroundInformation background;
     QString song;
 };
 
