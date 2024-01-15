@@ -10,15 +10,15 @@ on:
 
 jobs:
   formatting-check:
-    name: check-clang-format
+    name: formatting-check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run clang-format style check.
-      uses: jidicula/clang-format-action@v4.5.0
+    - uses: actions/checkout@v3
+    - name: Run clang-format style check for C/C++/Protobuf programs.
+      uses: jidicula/clang-format-action@v4.11.0
       with:
         clang-format-version: '14'
-        check-path: '.'
+        check-path: 'src'
 
   build:
     needs: formatting-check
