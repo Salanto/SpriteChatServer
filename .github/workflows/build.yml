@@ -94,7 +94,7 @@ jobs:
         windeployqt --no-quick-import --no-translations --no-virtualkeyboard --no-compiler-runtime --no-webkit2 --no-opengl-sw .
 
     - name: Upload Zip
-      uses: actions/upload-artifact@v4.1
+      uses: actions/upload-artifact@v4
       with:
           name: HVAC_Server-${{matrix.os}}-${{matrix.c_compiler}}
           path: ${{github.workspace}}/
