@@ -85,3 +85,16 @@ jobs:
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+
+    - name: Deploy Windows
+      if: contains(matrix.os, 'windows')
+      working-directory: ${{github.workspace}}/bin/
+      shell: bash
+      run: |
+        windeployqt --no-quick-import --no-translations --no-virtualkeyboard --no-compiler-runtime --no-webkit2 --no-opengl-sw .
+
+    - name: Upload Zip
+      uses: actions/upload-artifact@v4.1
+      with:
+          name: HVAC_Server-${{matrix.os}}-${{matrix.c_compiler}}
+          path: ${{github.workspace}}/

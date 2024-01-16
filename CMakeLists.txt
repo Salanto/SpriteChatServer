@@ -12,8 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core WebSockets Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core WebSockets Network)
 
-include_directories(src src/areas)
-
 add_executable(HVAC-Server
   src/main.cpp
   src/serverapplication.h src/serverapplication.cpp
@@ -37,6 +35,13 @@ add_executable(HVAC-Server
   src/areas/area.h src/areas/area.cpp
   src/helper.h
 )
+
+target_include_directories(HVAC-Server
+   PRIVATE src
+   PRIVATE src/packet
+   PRIVATE src/areas
+)
+
 target_link_libraries(HVAC-Server
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::WebSockets
@@ -48,3 +53,7 @@ install(TARGETS HVAC-Server
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+set_target_properties(HVAC-Server PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
