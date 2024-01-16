@@ -10,7 +10,6 @@ Location::Location(QObject *parent) :
 
 Location::~Location()
 {
-
 }
 
 int Location::getID() const

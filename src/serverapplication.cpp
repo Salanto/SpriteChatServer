@@ -1,14 +1,14 @@
 #include "serverapplication.h"
+#include "areamanager.h"
 #include "clientmanager.h"
 #include "coordinatorclient.h"
 #include "options.h"
 #include "packetrelay.h"
-#include "areamanager.h"
 
 #include <QDebug>
 
-ServerApplication::ServerApplication(int argc, char *argv[])
-    : QCoreApplication(argc, argv)
+ServerApplication::ServerApplication(int argc, char *argv[]) :
+    QCoreApplication(argc, argv)
 {
 }
 

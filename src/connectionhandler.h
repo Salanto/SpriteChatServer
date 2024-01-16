@@ -11,20 +11,21 @@ struct ServerInformation;
 class ConnectionHandler : public QObject
 {
     Q_OBJECT
-public:
+
+  public:
     explicit ConnectionHandler(QObject *parent = nullptr,
-                                   ServerInformation *f_information = nullptr);
+                               ServerInformation *f_information = nullptr);
     bool start(QHostAddress f_bind, int f_ws_port);
 
-signals:
+  signals:
     void gameSocketConnected(QWebSocket *f_socket);
     void probeSocketConnected(QWebSocket *f_socket);
 
-private slots:
+  private slots:
     void onSocketConnect();
     void sendServerInformation(QWebSocket *f_socket);
 
-private:
+  private:
     using Route = void (ConnectionHandler::*)(QWebSocket *);
     std::map<QString, Route> routes;
 

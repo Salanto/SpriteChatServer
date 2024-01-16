@@ -1,5 +1,5 @@
-#include "serverapplication.h"
 #include "options.h"
+#include "serverapplication.h"
 
 inline static QVersionNumber version = QVersionNumber({0, 1, 2});
 

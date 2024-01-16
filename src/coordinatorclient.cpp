@@ -1,14 +1,16 @@
 #include "coordinatorclient.h"
 #include "serverinformation.h"
 
-#include <QNetworkAccessManager>
-#include <QTimer>
-#include <QJsonObject>
 #include <QJsonDocument>
+#include <QJsonObject>
+#include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QTimer>
 
 CoordinatorClient::CoordinatorClient(QObject *parent, ServerInformation *f_information, bool f_enabled, int f_ws_port) :
-    QObject{parent}, s_information{f_information}, ws_port{f_ws_port}
+    QObject{parent},
+    s_information{f_information},
+    ws_port{f_ws_port}
 {
     ms_client = new QNetworkAccessManager(this);
     timeout = new QTimer(this);

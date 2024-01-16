@@ -3,12 +3,12 @@
 
 #include "packet.h"
 
-#include <QVersionNumber>
 #include <QJsonObject>
+#include <QVersionNumber>
 
 class PacketHello : public Packet
 {
-public:
+  public:
     PacketHello() = default;
 
     bool fromJsonValue(const QJsonValue &f_in) override;
@@ -17,7 +17,7 @@ public:
     QVersionNumber appVersion() const;
     QString hwid() const;
 
-private:
+  private:
     QString application_name;
     QVersionNumber version = {0, 0, 0};
     QString identifier;

@@ -7,7 +7,7 @@ struct ServerInformation;
 
 class PacketBuilder
 {
-public:
+  public:
     PacketBuilder() = delete;
     ~PacketBuilder() = delete;
 

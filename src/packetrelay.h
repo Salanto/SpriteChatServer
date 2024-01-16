@@ -11,13 +11,14 @@ class Packet;
 class PacketRelay : public QObject
 {
     Q_OBJECT
-public:
+
+  public:
     explicit PacketRelay(QObject *parent = nullptr);
 
-public slots:
+  public slots:
     void packetReceived(QByteArray f_data, Client *f_client);
 
-signals:
+  signals:
     // Sends the packet to a single client.
     void unicastSend(const int f_id, const QByteArray f_data);
     // Sends the same packet to multiple clients.
@@ -25,10 +26,9 @@ signals:
     // Sends the same packet to all clients.
     void broadcastSend(const QByteArray f_data);
 
+    void softwareInformation(Packet *f_data, Client *f_client);
 
-    void softwareInformation(Packet* f_data, Client* f_client);
-
-private:
+  private:
     bool canRoutePacket(QString f_header);
     using Route = void (PacketRelay::*)(Packet *, Client *);
     std::map<QString, Route> routes;

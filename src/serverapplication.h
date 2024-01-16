@@ -15,18 +15,19 @@ class AreaManager;
 class ServerApplication : public QCoreApplication
 {
     Q_OBJECT
-public:
+
+  public:
     explicit ServerApplication(int argc, char *argv[]);
 
     void start();
-signals:
+  signals:
 
-private:
+  private:
     ClientManager *client_manager;
-    CoordinatorClient* advertiser;
+    CoordinatorClient *advertiser;
     ServerInformation information;
     PacketRelay *relay;
-    AreaManager* area_manager;
+    AreaManager *area_manager;
 };
 
 #endif // SERVERAPPLICATION_H
