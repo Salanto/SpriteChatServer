@@ -3,8 +3,8 @@
 
 #include "client.h"
 
-PacketRelay::PacketRelay(QObject *parent)
-    : QObject{parent}
+PacketRelay::PacketRelay(QObject *parent) :
+    QObject{parent}
 {
     PacketFactory::registerPackets();
     routes["HELLO"] = &PacketRelay::softwareInformation;

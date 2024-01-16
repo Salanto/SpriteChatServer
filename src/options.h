@@ -6,8 +6,8 @@
 
 class Options
 {
-public:
-    //You should NEVER instance this.
+  public:
+    // You should NEVER instance this.
     Options() = delete;
     ~Options() = delete;
 
@@ -27,7 +27,7 @@ public:
 
     static QStringList areas();
 
-private:
+  private:
     inline static QSettings *settings = nullptr;
     inline static const QStringList files{"config/config.ini"};
 };

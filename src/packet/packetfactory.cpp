@@ -26,19 +26,18 @@ Packet *PacketFactory::createPacket(QByteArray f_data)
     return new PacketGeneric();
 }
 
-template<class T>
+template <class T>
 Packet *PacketFactory::createInstance(QJsonValue f_data)
 {
-    Packet* l_packet = new T();
+    Packet *l_packet = new T();
     if (!l_packet->fromJsonValue(f_data)) {
         delete l_packet;
         return new PacketGeneric();
     }
     return l_packet;
-
 }
 
-template<typename T>
+template <typename T>
 void PacketFactory::registerPacket(QString header)
 {
     QString l_header = T().header();

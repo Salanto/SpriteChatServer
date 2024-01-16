@@ -1,12 +1,12 @@
 #include "area.h"
 
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QJsonObject>
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 
-Area::Area(QObject *parent)
-    : QObject{parent}
+Area::Area(QObject *parent) :
+    QObject{parent}
 {}
 
 void Area::setID(const int f_id)
@@ -58,19 +58,17 @@ bool Area::loadLocations(QJsonValue f_locations)
 
     QJsonArray l_locations = f_locations.toArray();
     for (QJsonValueRef l_location_ref : l_locations) {
-        if(!l_location_ref.isObject()) {
+        if (!l_location_ref.isObject()) {
             qDebug() << "Unable to load location. Entry is not an object.";
             continue;
         }
         QJsonObject l_location = l_location_ref.toObject();
-        Location* location = new Location(this);
+        Location *location = new Location(this);
         location->setID(locations.size());
         location->setName(l_location["name"].toString());
         location->setBackground(backgrounds.value(l_location["background"].toString()));
         location->setDescription(l_location["description"].toString());
     }
-
-
 
     return true;
 }

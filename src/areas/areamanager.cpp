@@ -1,22 +1,22 @@
 #include "areamanager.h"
-#include "packetrelay.h"
-#include "constants.h"
-#include "options.h"
-#include "helper.h"
 #include "area.h"
+#include "constants.h"
+#include "helper.h"
+#include "options.h"
+#include "packetrelay.h"
 
-#include <QFile>
 #include <QDebug>
+#include <QFile>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonArray>
 
 AreaManager::AreaManager(QObject *parent, PacketRelay *f_relay) :
     QObject{parent},
     relay{f_relay}
 {
     QStringList l_areas = Options::areas();
-    for(const QString& l_area : l_areas) {
+    for (const QString &l_area : l_areas) {
         qDebug() << "Loading area" << l_area;
         if (!loadAreaFromFile(l_area.toLower())) {
             continue;
@@ -40,14 +40,14 @@ bool AreaManager::loadAreaFromFile(const QString &f_file)
         return false;
     }
 
-    if(!l_area_document.isObject()) {
+    if (!l_area_document.isObject()) {
         qDebug() << "Unable to load area. Error: Document is not an object.";
         return false;
     }
     QJsonObject l_area_conf = l_area_document.object();
-    //TODO: populate locations.
+    // TODO: populate locations.
 
-    Area* l_area = new Area(this);
+    Area *l_area = new Area(this);
 
     l_area->setBackgroundList(readBackgrounds(l_area_conf["backgrounds"].toString()));
     l_area->setCharacterList(readCharacters(l_area_conf["characters"].toString()));
@@ -67,13 +67,13 @@ QStringList AreaManager::readCharacters(const QString &f_file)
     }
     QStringList l_characters;
     QTextStream l_stream(l_file.get());
-    while(!l_stream.atEnd()) {
+    while (!l_stream.atEnd()) {
         l_characters.append(l_stream.readLine());
     }
     return l_characters;
 }
 
-DataTypes::BackgroundList AreaManager::readBackgrounds(const QString& f_file)
+DataTypes::BackgroundList AreaManager::readBackgrounds(const QString &f_file)
 {
     std::unique_ptr<QFile> l_file = Helper::openFile(Storage::background_storage + f_file + ".json", QIODevice::ReadOnly);
     if (l_file.get() == nullptr) {
@@ -81,23 +81,23 @@ DataTypes::BackgroundList AreaManager::readBackgrounds(const QString& f_file)
     }
 
     QJsonDocument l_background_document = Helper::validateJSON(l_file.get()->readAll());
-    if(l_background_document.isNull()) {
+    if (l_background_document.isNull()) {
         return DataTypes::BackgroundList{};
     }
 
     DataTypes::BackgroundList backgrounds;
     QJsonArray l_backgrounds = l_background_document.array();
-    for(const auto& l_background_ref : l_backgrounds) {
+    for (const auto &l_background_ref : l_backgrounds) {
         if (!l_background_ref.isObject()) {
             continue;
         }
 
-        QJsonObject l_background  = l_background_ref.toObject();
+        QJsonObject l_background = l_background_ref.toObject();
         DataTypes::BackgroundInformation l_information;
         l_information.name = l_background["name"].toString();
         QJsonArray l_sides = l_background["sides"].toArray();
 
-        for (const auto& l_side_ref : l_sides) {
+        for (const auto &l_side_ref : l_sides) {
             QJsonObject l_side = l_side_ref.toObject();
             QString side = l_side["name"].toString();
             l_information.sides.append(side);
@@ -116,17 +116,17 @@ DataTypes::MusicList AreaManager::readMusicList(const QString f_file)
     }
 
     QJsonDocument l_musiclist_document = Helper::validateJSON(l_file.get()->readAll());
-    if(l_musiclist_document.isNull()) {
+    if (l_musiclist_document.isNull()) {
         return DataTypes::MusicList{};
     }
 
     DataTypes::MusicList musiclist;
     QJsonArray l_musiclist_array = l_musiclist_document.array();
-    for(const auto&l_musiclist_category : l_musiclist_array) {
+    for (const auto &l_musiclist_category : l_musiclist_array) {
         QJsonObject l_musiclist = l_musiclist_category.toObject();
         QList<QVariant> l_variant_songs = l_musiclist["songs"].toArray().toVariantList();
         QStringList songs;
-        for(const QVariant& l_song : l_variant_songs) {
+        for (const QVariant &l_song : l_variant_songs) {
             songs.append(l_song.toString());
         }
 
@@ -137,6 +137,3 @@ DataTypes::MusicList AreaManager::readMusicList(const QString f_file)
 
     return musiclist;
 }
-
-
-

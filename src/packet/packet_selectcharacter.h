@@ -5,13 +5,13 @@
 
 class PacketSelectCharacter : public Packet
 {
-public:
+  public:
     PacketSelectCharacter() = default;
     bool fromJsonValue(const QJsonValue &f_in) override;
     QString header() const override;
     QString character() const;
 
-private:
+  private:
     QString m_character;
 };
 #endif // PACKET_SELECTCHARACTER_H

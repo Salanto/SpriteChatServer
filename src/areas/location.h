@@ -14,23 +14,23 @@
 
 class Location : public QObject
 {
-public:
-    Location(QObject* parent);
+  public:
+    Location(QObject *parent);
     ~Location();
 
     int getID() const;
-    void setID(const int& f_id);
+    void setID(const int &f_id);
 
     QString getName() const;
-    void setName(const QString& f_name);
+    void setName(const QString &f_name);
 
     QString getDescription() const;
-    void setDescription(const QString& f_description);
+    void setDescription(const QString &f_description);
 
     DataTypes::BackgroundInformation getBackground() const;
-    void setBackground(const DataTypes::BackgroundInformation& f_background);
+    void setBackground(const DataTypes::BackgroundInformation &f_background);
 
-private:
+  private:
     int id;
     QString name;
     QString description;

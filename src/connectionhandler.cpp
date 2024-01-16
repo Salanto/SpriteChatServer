@@ -6,9 +6,9 @@
 #include <QWebSocket>
 #include <QWebSocketServer>
 
-ConnectionHandler::ConnectionHandler(QObject *parent, ServerInformation *f_information)
-    : QObject{parent}
-    , information(f_information)
+ConnectionHandler::ConnectionHandler(QObject *parent, ServerInformation *f_information) :
+    QObject{parent},
+    information(f_information)
 {
     if (f_information == nullptr) {
         qDebug() << "ServerInformation pointer is nullptr. This is a bad thing to happen.";

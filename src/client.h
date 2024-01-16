@@ -10,18 +10,18 @@ class Client : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     Client(QObject *parent, QWebSocket *f_socket, int f_id);
     ~Client();
 
     void write(const QByteArray f_data);
     int id() { return m_id; }
 
-signals:
+  signals:
     void networkDataReceived(const QByteArray &f_data, Client *f_client);
     void socketDisconnected(Client *f_client);
 
-private:
+  private:
     int m_id;
     QWebSocket *m_socket;
 };

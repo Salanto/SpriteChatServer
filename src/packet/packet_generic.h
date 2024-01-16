@@ -5,7 +5,7 @@
 
 class PacketGeneric : public Packet
 {
-public:
+  public:
     PacketGeneric() = default;
 
     bool fromJsonValue(const QJsonValue &f_in) override;
@@ -13,7 +13,7 @@ public:
     QString setHeader(const QString f_header);
     QByteArray toJsonString() const;
 
-private:
+  private:
     QString m_header;
     QJsonValue m_data;
 };
