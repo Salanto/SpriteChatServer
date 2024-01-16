@@ -30,12 +30,16 @@ class Location : public QObject
     DataTypes::BackgroundInformation getBackground() const;
     void setBackground(const DataTypes::BackgroundInformation &f_background);
 
+    void removePlayer(int f_player);
+    bool joinPlayer(int f_player);
+
   private:
     int id;
     QString name;
     QString description;
     DataTypes::BackgroundInformation background;
     QString song;
+    QList<int> players;
 };
 
 #endif // LOCATION_H

@@ -55,3 +55,14 @@ void Location::setBackground(const DataTypes::BackgroundInformation &f_backgroun
 {
     background = f_background;
 }
+
+void Location::removePlayer(int f_player)
+{
+    players.removeAll(f_player);
+}
+
+bool Location::joinPlayer(int f_player)
+{
+    players.append(f_player);
+    return true;
+}

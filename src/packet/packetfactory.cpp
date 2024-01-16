@@ -1,6 +1,7 @@
 #include "packetfactory.h"
 #include "packet_generic.h"
 #include "packet_hello.h"
+#include "packet_selectarea.h"
 #include "packet_selectcharacter.h"
 
 #include <QJsonDocument>
@@ -49,4 +50,5 @@ void PacketFactory::registerPackets()
 {
     registerPacket<PacketHello>("HELLO");
     registerPacket<PacketSelectCharacter>("SELECT_CHARACTER");
+    registerPacket<PacketSelectArea>("SELECT_AREA");
 }

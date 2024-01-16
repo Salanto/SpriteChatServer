@@ -1,0 +1,13 @@
+{
+    "backgrounds" : "default",
+    "musiclist" : "default",
+    "characters": "default",
+    "locations": [
+            {
+                "name": "Area1",
+                "background": "default",
+                "color": 123123123,
+                "description": ""
+            }
+    ]
+}

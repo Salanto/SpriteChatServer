@@ -72,3 +72,13 @@ bool Area::loadLocations(QJsonValue f_locations)
 
     return true;
 }
+
+Location *Area::getLocationByID(const int id) const
+{
+    if (locations.size() < id) {
+        qDebug() << "Unable to access Location at" << id;
+        qDebug() << "Location does not exist.";
+        return nullptr;
+    }
+    return locations.at(0);
+}

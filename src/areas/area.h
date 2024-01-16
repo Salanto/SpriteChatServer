@@ -34,6 +34,8 @@ class Area : public QObject
 
     bool loadLocations(QJsonValue f_locations);
 
+    Location *getLocationByID(const int id) const;
+
   private:
     QVector<Location *> locations; // aka areas in AO2 slang.
     QStringList characters;

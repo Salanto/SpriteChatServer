@@ -16,6 +16,7 @@ class Client : public QObject
 
     void write(const QByteArray f_data);
     int id() { return m_id; }
+    QHostAddress getIP() const;
 
   signals:
     void networkDataReceived(const QByteArray &f_data, Client *f_client);
@@ -24,6 +25,7 @@ class Client : public QObject
   private:
     int m_id;
     QWebSocket *m_socket;
+    QHostAddress socket_ip;
 };
 
 #endif // CLIENT_H

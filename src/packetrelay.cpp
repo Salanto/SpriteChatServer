@@ -7,7 +7,18 @@ PacketRelay::PacketRelay(QObject *parent) :
     QObject{parent}
 {
     PacketFactory::registerPackets();
-    routes["HELLO"] = &PacketRelay::softwareInformation;
+    routes["HELLO"] = &PacketRelay::clientHello;
+    routes["SELECT_AREA"] = &PacketRelay::clientSelectArea;
+}
+
+void PacketRelay::routeInternalPacket(Packet *f_packet, Client *f_client)
+{
+    const QString l_header = f_packet->header();
+    qDebug() << "Routing internal packet for" << f_client->id() << "at" << f_client->getIP();
+    if (canRoutePacket(l_header)) {
+        emit(this->*routes[l_header])(f_packet, f_client);
+        return;
+    }
 }
 
 void PacketRelay::packetReceived(QByteArray f_data, Client *f_client)
@@ -16,7 +27,6 @@ void PacketRelay::packetReceived(QByteArray f_data, Client *f_client)
     QString l_header = f_packet->header();
 
     if (canRoutePacket(l_header)) {
-        qDebug() << "Routing packet on route" << l_header;
         emit(this->*routes[l_header])(f_packet, f_client);
         return;
     }

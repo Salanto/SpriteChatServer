@@ -1,5 +1,6 @@
 #include "serverapplication.h"
 #include "areamanager.h"
+#include "banmanager.h"
 #include "clientmanager.h"
 #include "coordinatorclient.h"
 #include "options.h"
@@ -28,4 +29,5 @@ void ServerApplication::start()
     relay = new PacketRelay(this);
     area_manager = new AreaManager(this, relay);
     connect(client_manager, &ClientManager::dataReady, relay, &PacketRelay::packetReceived);
+    ban_manager = new BanManager(this, relay);
 }

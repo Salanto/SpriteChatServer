@@ -1,0 +1,9 @@
+[
+    {
+        "category": "Sample Category",
+        "songs": [
+            "song.opus",
+            "song2.opus"
+        ]
+    }
+]

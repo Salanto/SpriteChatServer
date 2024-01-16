@@ -1,8 +1,10 @@
 #include "areamanager.h"
 #include "area.h"
+#include "client.h"
 #include "constants.h"
 #include "helper.h"
 #include "options.h"
+#include "packet_selectarea.h"
 #include "packetrelay.h"
 
 #include <QDebug>
@@ -15,6 +17,8 @@ AreaManager::AreaManager(QObject *parent, PacketRelay *f_relay) :
     QObject{parent},
     relay{f_relay}
 {
+    connect(f_relay, &PacketRelay::clientSelectArea, this, &AreaManager::onSelectAreaReceived);
+
     QStringList l_areas = Options::areas();
     for (const QString &l_area : l_areas) {
         qDebug() << "Loading area" << l_area;
@@ -57,6 +61,13 @@ bool AreaManager::loadAreaFromFile(const QString &f_file)
     areas.append(l_area);
     l_area->setID(areas.indexOf(l_area));
     return true;
+}
+
+void AreaManager::onSelectAreaReceived(Packet *f_packet, Client *f_client)
+{
+    qDebug() << "Received SelectArea by client" << f_client->id();
+    PacketSelectArea *l_packet = static_cast<PacketSelectArea *>(f_packet);
+    Area *l_area = areas.at(l_packet->getArea());
 }
 
 QStringList AreaManager::readCharacters(const QString &f_file)

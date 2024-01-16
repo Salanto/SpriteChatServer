@@ -34,6 +34,8 @@ add_executable(HVAC-Server
   src/areas/location.h src/areas/location.cpp
   src/areas/area.h src/areas/area.cpp
   src/helper.h
+  src/banmanager.h src/banmanager.cpp
+  src/packet/packet_selectarea.h src/packet/packet_selectarea.cpp
 )
 
 target_include_directories(HVAC-Server

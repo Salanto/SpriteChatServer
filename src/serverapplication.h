@@ -11,6 +11,7 @@ class ClientManager;
 class CoordinatorClient;
 class PacketRelay;
 class AreaManager;
+class BanManager;
 
 class ServerApplication : public QCoreApplication
 {
@@ -28,6 +29,7 @@ class ServerApplication : public QCoreApplication
     ServerInformation information;
     PacketRelay *relay;
     AreaManager *area_manager;
+    BanManager *ban_manager;
 };
 
 #endif // SERVERAPPLICATION_H

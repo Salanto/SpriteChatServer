@@ -1,0 +1,12 @@
+[
+    {
+        "name": "default",
+        "sides": [
+            {
+                "name":"witness",
+                "image":"witnessempty.png",
+                "overlay": ""
+            }
+        ]
+    }
+]

@@ -7,6 +7,8 @@
 #include "datatypes.h"
 
 class PacketRelay;
+class Packet;
+class Client;
 
 class AreaManager : public QObject
 {
@@ -16,6 +18,9 @@ class AreaManager : public QObject
     explicit AreaManager(QObject *parent = nullptr, PacketRelay *f_relay = nullptr);
 
     bool loadAreaFromFile(const QString &f_file);
+
+  private slots:
+    void onSelectAreaReceived(Packet *f_packet, Client *f_client);
 
   private:
     QStringList readCharacters(const QString &f_file);

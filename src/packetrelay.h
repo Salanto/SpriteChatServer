@@ -14,6 +14,7 @@ class PacketRelay : public QObject
 
   public:
     explicit PacketRelay(QObject *parent = nullptr);
+    void routeInternalPacket(Packet *f_packet, Client *f_client);
 
   public slots:
     void packetReceived(QByteArray f_data, Client *f_client);
@@ -26,7 +27,8 @@ class PacketRelay : public QObject
     // Sends the same packet to all clients.
     void broadcastSend(const QByteArray f_data);
 
-    void softwareInformation(Packet *f_data, Client *f_client);
+    void clientHello(Packet *f_data, Client *f_client);
+    void clientSelectArea(Packet *f_data, Client *f_client);
 
   private:
     bool canRoutePacket(QString f_header);
