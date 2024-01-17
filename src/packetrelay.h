@@ -23,7 +23,7 @@ class PacketRelay : public QObject
     // Sends the packet to a single client.
     void unicastSend(const int f_id, const QByteArray f_data);
     // Sends the same packet to multiple clients.
-    void multicastSend(const int f_id, const QByteArray f_data);
+    void multicastSend(const QList<int> f_id, const QByteArray f_data);
     // Sends the same packet to all clients.
     void broadcastSend(const QByteArray f_data);
 

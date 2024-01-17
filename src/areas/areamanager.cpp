@@ -5,6 +5,7 @@
 #include "helper.h"
 #include "options.h"
 #include "packet_selectarea.h"
+#include "packetbuilder.h"
 #include "packetrelay.h"
 
 #include <QDebug>
@@ -68,6 +69,13 @@ void AreaManager::onSelectAreaReceived(Packet *f_packet, Client *f_client)
     qDebug() << "Received SelectArea by client" << f_client->id();
     PacketSelectArea *l_packet = static_cast<PacketSelectArea *>(f_packet);
     Area *l_area = areas.at(l_packet->getArea());
+    Location *l_location = l_area->getLocationByID(l_packet->getLocation());
+
+    emit relay->unicastSend(f_client->id(), PacketBuilder::arealistPacket());
+    emit relay->unicastSend(f_client->id(), PacketBuilder::musiclistPacket(l_area->getMusicList()));
+    emit relay->unicastSend(f_client->id(), PacketBuilder::charlistPacket(l_area->getCharacterList()));
+    emit relay->unicastSend(f_client->id(), PacketBuilder::backgroundPacket(l_location->getBackground(), false));
+    emit relay->unicastSend(f_client->id(), PacketBuilder::sidesPacket(l_location->getBackground()));
 }
 
 QStringList AreaManager::readCharacters(const QString &f_file)

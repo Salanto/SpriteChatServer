@@ -3,15 +3,17 @@
 #include "connectionhandler.h"
 #include "options.h"
 #include "packetbuilder.h"
+#include "packetrelay.h"
 #include "serverinformation.h"
 
 #include <QWebSocket>
 
 const int INVALIDID = -1;
 
-ClientManager::ClientManager(QObject *parent, ServerInformation *f_information) :
+ClientManager::ClientManager(QObject *parent, ServerInformation *f_information, PacketRelay *f_relay) :
     QObject{parent},
-    s_information{f_information}
+    s_information{f_information},
+    relay{f_relay}
 {
     clients.fill(nullptr, Options::max_players());
     connection_handler = new ConnectionHandler(this, s_information);
@@ -20,6 +22,10 @@ ClientManager::ClientManager(QObject *parent, ServerInformation *f_information) 
             this,
             &ClientManager::clientConnected);
     connection_handler->start(Options::bind_ip(), Options::ws_port());
+    connect(this, &ClientManager::dataReady, relay, &PacketRelay::packetReceived);
+    connect(relay, &PacketRelay::unicastSend, this, &ClientManager::unicastSend);
+    connect(relay, &PacketRelay::multicastSend, this, &ClientManager::multicastSend);
+    connect(relay, &PacketRelay::broadcastSend, this, &ClientManager::broadcastSend);
 }
 
 void ClientManager::clientConnected(QWebSocket *f_socket)
@@ -47,7 +53,7 @@ void ClientManager::clientDisconnected(Client *f_client)
     s_information->playercount--;
 }
 
-void ClientManager::messageSend(const int f_id, const QByteArray f_data)
+void ClientManager::unicastSend(const int f_id, const QByteArray f_data)
 {
     Client *l_client = clients.at(f_id);
     if (l_client == nullptr) {
@@ -60,7 +66,7 @@ void ClientManager::messageSend(const int f_id, const QByteArray f_data)
 void ClientManager::multicastSend(const QList<int> f_id, const QByteArray f_data)
 {
     for (int l_id : f_id) {
-        messageSend(l_id, f_data);
+        unicastSend(l_id, f_data);
     }
 }
 

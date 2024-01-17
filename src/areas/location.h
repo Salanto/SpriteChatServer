@@ -27,7 +27,7 @@ class Location : public QObject
     QString getDescription() const;
     void setDescription(const QString &f_description);
 
-    DataTypes::BackgroundInformation getBackground() const;
+    DataTypes::BackgroundInformation *getBackground();
     void setBackground(const DataTypes::BackgroundInformation &f_background);
 
     void removePlayer(int f_player);

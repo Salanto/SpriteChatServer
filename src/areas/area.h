@@ -29,7 +29,7 @@ class Area : public QObject
     void setCharacterList(const QStringList &f_characters);
     QStringList getBackgroundList() const;
     void setBackgroundList(const DataTypes::BackgroundList &f_backgrounds);
-    DataTypes::MusicList getMusicList() const;
+    DataTypes::MusicList *getMusicList();
     void setMusicList(const DataTypes::MusicList &f_musiclist);
 
     bool loadLocations(QJsonValue f_locations);

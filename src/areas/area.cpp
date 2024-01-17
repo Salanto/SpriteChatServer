@@ -39,9 +39,9 @@ void Area::setBackgroundList(const DataTypes::BackgroundList &f_backgrounds)
     backgrounds = f_backgrounds;
 }
 
-DataTypes::MusicList Area::getMusicList() const
+DataTypes::MusicList *Area::getMusicList()
 {
-    return musiclist;
+    return &musiclist;
 }
 
 void Area::setMusicList(const DataTypes::MusicList &f_musiclist)
@@ -68,6 +68,7 @@ bool Area::loadLocations(QJsonValue f_locations)
         location->setName(l_location["name"].toString());
         location->setBackground(backgrounds.value(l_location["background"].toString()));
         location->setDescription(l_location["description"].toString());
+        locations.append(location);
     }
 
     return true;

@@ -8,6 +8,7 @@
 struct ServerInformation;
 class QWebSocket;
 class ConnectionHandler;
+class PacketRelay;
 
 class ClientManager : public QObject
 {
@@ -15,16 +16,17 @@ class ClientManager : public QObject
     QVector<Client *> clients;
     ConnectionHandler *connection_handler;
     ServerInformation *s_information = nullptr;
+    PacketRelay *relay;
 
   public:
     explicit ClientManager(QObject *parent = nullptr,
-                           ServerInformation *f_information = nullptr);
+                           ServerInformation *f_information = nullptr, PacketRelay *f_relay = nullptr);
 
   public slots:
     void clientConnected(QWebSocket *f_socket);
     void clientDisconnected(Client *f_client);
 
-    void messageSend(const int f_id, const QByteArray f_data);
+    void unicastSend(const int f_id, const QByteArray f_data);
     void multicastSend(const QList<int> f_id, const QByteArray f_data);
     void broadcastSend(const QByteArray f_data);
 

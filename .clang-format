@@ -19,3 +19,4 @@ EmptyLineBeforeAccessModifier: Always
 FixNamespaceComments: false
 IndentWidth: 4
 PackConstructorInitializers: CurrentLine
+NamespaceIndentation: All
