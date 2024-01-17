@@ -23,9 +23,9 @@ void ServerApplication::start()
     information.description = Options::server_description();
     information.asset_url = Options::server_name();
     information.custom_hostname = Options::hostname();
+    relay = new PacketRelay(this);
     client_manager = new ClientManager(this, &information, relay);
     advertiser = new CoordinatorClient(this, &information, Options::advertise(), Options::ws_port());
-    relay = new PacketRelay(this);
     area_manager = new AreaManager(this, relay);
     ban_manager = new BanManager(this, relay);
 }
